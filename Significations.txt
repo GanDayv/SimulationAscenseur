@@ -1,0 +1,7 @@
+APP : Arrivée Passager Palier -> Instant précis
+
+PCP : L'instant précis où la cabine passe devant un palier
+
+FPC : Instant précis où les portes terminent de se fermer
+
+OPC : Instant précis où les portes terminent de s'ouvrir
