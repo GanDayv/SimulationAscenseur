@@ -19,10 +19,25 @@ public class EvenementPassageCabinePalier extends Evenement {
         Cabine cabine = immeuble.cabine;
         assert !cabine.porteOuverte;
         assert etage.numero() != cabine.etage.numero();
-	cabine.etage = etage;
-
-	notYetImplemented();
-	
+        cabine.etage = etage;
+        //Ici
+        if(cabine.etage.getListePerso().size() == 0){
+        	
+        	if(cabine.status() == 'v'){
+        		
+        		long temps = date+tempsPourBougerLaCabineDUnEtage;
+        		echeancier.ajouter(new EvenementPassageCabinePalier(temps, immeuble.etage(immeuble.cabine.etage.numero()-1)));
+        		
+        	}else{
+        		notYetImplemented();
+        	}
+        	
+        }else{
+        	if(true){
+        		
+        	}
+        }
+        
         assert !cabine.porteOuverte;
     }
 

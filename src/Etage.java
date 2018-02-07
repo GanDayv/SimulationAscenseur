@@ -72,5 +72,9 @@ public class Etage extends Constantes {
     public long arriveeSuivant() {
 	return poissonFrequenceArrivee.suivant();
     }
+    
+    public ArrayList<Passager> getListePerso(){
+    	return passagers;
+    }
 
 }
