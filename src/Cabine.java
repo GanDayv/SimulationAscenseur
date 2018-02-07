@@ -41,5 +41,15 @@ public class Cabine extends Constantes {
 	assert (s == 'v') || (s == '^') || (s == '-');
 	status = s;
     }
+    
+    public int getNbPassager(){
+    	int nb = 0;
+    	for (int i = tableauPassager.length - 1; i >= 0 ; i--) {
+    	    if (tableauPassager[i] != null) {
+    		nb++;
+    	    }
+    	}
+    	return nb;
+    }
 
 }
