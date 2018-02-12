@@ -36,7 +36,7 @@ public class EvenementArriveePassagerPalier extends Evenement {
 		}
 		
 		//ajouter evenement APP
-		//date;
+		date += this.etageDeDepart.arriveeSuivant();
 		echeancier.ajouter(this);
 		//
 		
