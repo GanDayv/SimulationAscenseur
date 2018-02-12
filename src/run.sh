@@ -6,7 +6,7 @@ LIGNES=true
 IO=$(pwd)/IO
 cd IO >& /dev/null || exit 1
 cd ${IO}/..
-ldir=""
+ldir=""#repertoire pour les fichiers java
 c=0
 for d in * */* */*/*
 do

@@ -19,9 +19,11 @@ public class EvenementOuverturePorteCabine extends Evenement {
     	assert !cabine.porteOuverte;
 		cabine.porteOuverte = true;
 		//Ici
-		
-		notYetImplemented();
-		
+		cabine.changerStatus('-');
+		int nbSortis = cabine.faireSortir();
+		int nbEntres = etage.faireRentrer();
+		long tmp = date+(nbEntres+nbSortis)*Constantes.tempsPourEntrerOuSortirDeLaCabine;
+		echeancier.ajouter(new EvenementFermeturePorteCabine(tmp));
 		//Jusque là
 		assert cabine.porteOuverte;
     }

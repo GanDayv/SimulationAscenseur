@@ -2,6 +2,7 @@
 // Ne pas exporter la collection passagers.
 // Vous pouvez ajouter/modifier des méthodes.
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Etage extends Constantes {
 
@@ -24,49 +25,49 @@ public class Etage extends Constantes {
     }
 
     public void affiche() {
-	if (numero() >= 0) {
-	    System.out.print(' ');
-	}
-	System.out.print(numero());
-	if (this == immeuble.cabine.etage) {
-	    System.out.print(" C ");
-	    if (immeuble.cabine.porteOuverte) {
-		System.out.print("[  ]: ");
-	    } else {
-		System.out.print(" [] : ");
-	    }
-	} else {
-	    System.out.print("   ");
-	    System.out.print(" [] : ");
-	}
-	int i = 0;
-	boolean stop = passagers.size() == 0;
-	while (!stop) {
-	    if (i >= passagers.size()) {
-		stop = true;
-	    } else if (i > 6) {
-		stop = true;
-		System.out.print("...(");
-		System.out.print(passagers.size());
-		System.out.print(')');
-	    } else {
-		passagers.get(i).affiche();
-		i++;
-		if (i < passagers.size()) {
-		    System.out.print(", ");
+		if (numero() >= 0) {
+			System.out.print(' ');
 		}
-	    }
-	}
-	System.out.print('\n');
+		System.out.print(numero());
+		if (this == immeuble.cabine.etage) {
+			System.out.print(" C ");
+			if (immeuble.cabine.porteOuverte) {
+			System.out.print("[  ]: ");
+			} else {
+			System.out.print(" [] : ");
+			}
+		} else {
+			System.out.print("   ");
+			System.out.print(" [] : ");
+		}
+		int i = 0;
+		boolean stop = passagers.size() == 0;
+		while (!stop) {
+			if (i >= passagers.size()) {
+			stop = true;
+			} else if (i > 6) {
+			stop = true;
+			System.out.print("...(");
+			System.out.print(passagers.size());
+			System.out.print(')');
+			} else {
+			passagers.get(i).affiche();
+			i++;
+			if (i < passagers.size()) {
+				System.out.print(", ");
+			}
+			}
+		}
+		System.out.print('\n');
     }
 
     public int numero() {
-	return this.numero;
+		return this.numero;
     }
 
     public void ajouter(Passager passager) {
-	assert passager != null;
-	passagers.add(passager);
+		assert passager != null;
+		passagers.add(passager);
     }
 
     public long arriveeSuivant() {
@@ -81,5 +82,28 @@ public class Etage extends Constantes {
     	}
     	return res;
     }
+
+    public boolean estVide(){
+    	if(this.passagers.isEmpty())
+    		return true;
+		else
+			return false;
+	}
+
+	public int faireRentrer(){
+		if(this.estVide()){
+			notYetImplemented();
+		} else {
+			Iterator<Passager> i = this.passagers.iterator();
+			int cmpt = 0;
+			while (!this.immeuble.cabine.estPlein() && i.hasNext()){
+				Passager p = i.next();
+				this.immeuble.cabine.ajouterPassager(p);
+				this.passagers.remove(p);
+				cmpt++;
+			}
+			return cmpt;
+		} return 0;
+	}
 
 }
