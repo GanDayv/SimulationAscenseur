@@ -19,15 +19,6 @@ public class EvenementPassageCabinePalier extends Evenement {
         Cabine cabine = immeuble.cabine;
         assert !cabine.porteOuverte;
         assert etage.numero() != cabine.etage.numero();
-<<<<<<< HEAD
-	    cabine.etage = etage;
-
-	    if(){ //si il y a personne sur le palier
-
-        }
-	    notYetImplemented();
-	
-=======
         cabine.etage = etage;
         //Ici
         if(cabine.etage.getListePerso().size() == 0){
@@ -46,8 +37,7 @@ public class EvenementPassageCabinePalier extends Evenement {
         		
         	}
         }
-        
->>>>>>> 6a365e6dca7193e2cfb91341deb518c228cfb299
+
         assert !cabine.porteOuverte;
     }
 
