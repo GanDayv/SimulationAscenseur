@@ -73,8 +73,13 @@ public class Etage extends Constantes {
 	return poissonFrequenceArrivee.suivant();
     }
     
-    public ArrayList<Passager> getListePerso(){
-    	return passagers;
+    public boolean doitStopper(){
+    	boolean res = false;
+    	int nb = passagers.size();
+    	if(nb > 0){
+    		res = true;
+    	}
+    	return res;
     }
 
 }

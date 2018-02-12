@@ -34,7 +34,12 @@ public class EvenementArriveePassagerPalier extends Evenement {
 		}else{
 			notYetImplemented();
 		}
+		
+		//ajouter evenement APP
+		//date;
+		echeancier.ajouter(this);
 		//
+		
 	}
 
 }
