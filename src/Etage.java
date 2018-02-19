@@ -89,21 +89,27 @@ public class Etage extends Constantes {
 		else
 			return false;
 	}
+    
+    public boolean essayerDeFaireRentrer(Passager p){
+    	boolean res = false;
+    	if(!immeuble.cabine.estPlein()){
+    		immeuble.cabine.ajouterPassager(p);
+    	}
+    	return res;
+    }
 
 	public int faireRentrer(){
-		if(this.estVide()){
-			notYetImplemented();
-		} else {
-			Iterator<Passager> i = this.passagers.iterator();
-			int cmpt = 0;
-			while (!this.immeuble.cabine.estPlein() && i.hasNext()){
-				Passager p = i.next();
-				this.immeuble.cabine.ajouterPassager(p);
-				this.passagers.remove(p);
-				cmpt++;
+		//parcourrir passagers appeler méthode essayer... Si vrai, ajouter personne au return compteur sinon personne suivante test
+		int res = 0;
+		while(res < passagers.size()){
+			if(!essayerDeFaireRentrer(passagers.get(res))){
+				res++;
 			}
-			return cmpt;
-		} return 0;
+		}
+		return res;
 	}
 
+	public long dateArrPremier(){
+		return passagers.get(0).dateDepart();
+	}
 }

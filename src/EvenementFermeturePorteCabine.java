@@ -15,9 +15,22 @@ public class EvenementFermeturePorteCabine extends Evenement {
 	Cabine cabine = immeuble.cabine;
 	assert cabine.porteOuverte;
 	cabine.porteOuverte = false;
-
-	notYetImplemented();
-
+	//Ici
+	
+	immeuble.cabine.calculerStatus();
+	
+	if(immeuble.cabine.status() == '^'){
+		long temps = date+tempsPourBougerLaCabineDUnEtage;
+		echeancier.ajouter(new EvenementPassageCabinePalier(temps, immeuble.etage(immeuble.cabine.etage.numero()+1)));
+		
+	}else{
+		notYetImplemented();
+	}
+	
+	//app revif portes fermee, FCP changer status en fonction du premier passager; 
+	
+	
+	//Jusqu'à là
 	assert ! cabine.porteOuverte;
     }
 

@@ -90,4 +90,21 @@ public class Immeuble extends Constantes {
 	return res;
     }
 	
+    //
+    
+    
+    
+    public int ouAllerSiVide(){
+    	int etageRes = cabine.etage.numero();
+    	long dateEtage = 0;
+    	for(int i = 0; i < tableauDesEtages.length; i++){
+    		if(tableauDesEtages[i].doitStopper()){
+    			if(tableauDesEtages[i].dateArrPremier() < dateEtage || dateEtage == 0){
+    				dateEtage = tableauDesEtages[i].dateArrPremier();
+    				etageRes = tableauDesEtages[i].numero();
+    			}
+    		}
+    	}
+    	return etageRes;
+    }
 }

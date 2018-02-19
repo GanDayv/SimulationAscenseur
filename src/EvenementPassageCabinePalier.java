@@ -29,11 +29,15 @@ public class EvenementPassageCabinePalier extends Evenement {
         		echeancier.ajouter(new EvenementPassageCabinePalier(temps, immeuble.etage(immeuble.cabine.etage.numero()-1)));
         		
         	}else{
-        		notYetImplemented();
-        	}
+        		if(cabine.status() == '^'){
+        			long temps = date+tempsPourBougerLaCabineDUnEtage;
+            		echeancier.ajouter(new EvenementPassageCabinePalier(temps, immeuble.etage(immeuble.cabine.etage.numero()+1)));
+        	
+        		}
+            		
+            }
         	
         }else{
-        	cabine.changerStatus('-');
         	long temps = date+tempsPourOuvrirOuFermerLesPortes;
         	echeancier.ajouter(new EvenementOuverturePorteCabine(temps));
         }

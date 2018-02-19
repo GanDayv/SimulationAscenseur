@@ -19,13 +19,13 @@ public class EvenementOuverturePorteCabine extends Evenement {
     	assert !cabine.porteOuverte;
 		cabine.porteOuverte = true;
 		//Ici
-		cabine.changerStatus('-');
 		int nbSortis = cabine.faireSortir();
 		int nbEntres = etage.faireRentrer();
-		long tmp = date+(nbEntres+nbSortis)*Constantes.tempsPourEntrerOuSortirDeLaCabine;
+		long tmp = date+((nbEntres+nbSortis)*Constantes.tempsPourEntrerOuSortirDeLaCabine)+Constantes.tempsPourOuvrirOuFermerLesPortes;
 		echeancier.ajouter(new EvenementFermeturePorteCabine(tmp));
+		
+		immeuble.cabine.calculerStatus();
 		//Jusque là
 		assert cabine.porteOuverte;
     }
-
 }

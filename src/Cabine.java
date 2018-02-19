@@ -53,14 +53,15 @@ public class Cabine extends Constantes {
 
 	public boolean estPlein(){
 		int compteur = 0;
-		for(int i = 0; i<this.tableauPassager.length; i++){
-			if(this.tableauPassager[i]!=null)
-				compteur ++;
+		boolean res = true;
+		while(compteur < nombreDePlacesDansLaCabine && res){
+			if(this.tableauPassager[compteur] == null){
+				res = false;
+			}else{
+				compteur++;
+			}
 		}
-		if(compteur == Constantes.nombreDePlacesDansLaCabine)
-			return true;
-		else
-			return false;
+		return res;
 	}
 
 	/**
@@ -88,5 +89,29 @@ public class Cabine extends Constantes {
 			}
 		}
 	}
-    
+	
+	public void calculerStatus(){
+		if(!this.estVide()){
+			Passager p = null;
+			int i = 0;
+			while(p == null){
+				if(tableauPassager[i] != null){
+					p = tableauPassager[i];
+				}else{
+					i++;
+				}
+				if(p.etageDestination().numero() > etage.numero()){
+					this.changerStatus('^');
+				}else{
+					if(p.etageDestination().numero() < etage.numero()){
+						this.changerStatus('v');
+					}else{
+						this.changerStatus('-');
+					}
+				}
+			}
+		}else{
+			notYetImplemented();
+		}
+	}
 }
