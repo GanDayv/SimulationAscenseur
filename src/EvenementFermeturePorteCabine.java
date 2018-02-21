@@ -17,7 +17,7 @@ public class EvenementFermeturePorteCabine extends Evenement {
 	cabine.porteOuverte = false;
 	//Ici
 	
-	immeuble.cabine.calculerStatus();
+	immeuble.cabine.calculerStatus(immeuble);
 	
 	if(immeuble.cabine.status() == '^'){
 		long temps = date+tempsPourBougerLaCabineDUnEtage;

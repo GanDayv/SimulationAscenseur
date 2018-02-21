@@ -24,7 +24,7 @@ public class EvenementOuverturePorteCabine extends Evenement {
 		long tmp = date+((nbEntres+nbSortis)*Constantes.tempsPourEntrerOuSortirDeLaCabine)+Constantes.tempsPourOuvrirOuFermerLesPortes;
 		echeancier.ajouter(new EvenementFermeturePorteCabine(tmp));
 		
-		immeuble.cabine.calculerStatus();
+		immeuble.cabine.calculerStatus(immeuble);
 		//Jusque là
 		assert cabine.porteOuverte;
     }

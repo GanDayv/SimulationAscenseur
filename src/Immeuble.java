@@ -93,7 +93,7 @@ public class Immeuble extends Constantes {
     //
     
     
-    
+    /*
     public int ouAllerSiVide(){
     	int etageRes = cabine.etage.numero();
     	long dateEtage = 0;
@@ -106,5 +106,10 @@ public class Immeuble extends Constantes {
     		}
     	}
     	return etageRes;
+    }
+    */
+    
+    public void calculerStatusCabine(){
+    	
     }
 }

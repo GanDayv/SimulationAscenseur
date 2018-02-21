@@ -90,28 +90,79 @@ public class Cabine extends Constantes {
 		}
 	}
 	
-	public void calculerStatus(){
-		if(!this.estVide()){
-			Passager p = null;
-			int i = 0;
-			while(p == null){
-				if(tableauPassager[i] != null){
-					p = tableauPassager[i];
-				}else{
-					i++;
-				}
-				if(p.etageDestination().numero() > etage.numero()){
-					this.changerStatus('^');
-				}else{
-					if(p.etageDestination().numero() < etage.numero()){
-						this.changerStatus('v');
+	private boolean continuerEtages(Immeuble im){
+
+		assert status == '^' || status == 'v';
+		
+		boolean continuer = false;
+		
+		if(this.status == 'v'){
+			int i = this.etage.numero();
+			if(i != im.etageLePlusBas().numero()){
+				i--;
+				while(i >= im.etageLePlusBas().numero() && !continuer){
+					System.out.println(i + " " + continuer);
+					if(!im.etage(i).estVide()){
+						continuer = true;
+						System.out.println(i + " " + continuer + " seks");
 					}else{
-						this.changerStatus('-');
+						i--;
 					}
 				}
 			}
 		}else{
-			notYetImplemented();
+			int i = this.etage.numero();
+			i++;
+			if(i != im.etageLePlusHaut().numero()){
+				while(i <= im.etageLePlusHaut().numero() && !continuer){
+					if(!im.etage(i).estVide()){
+						continuer = true;
+					}else{
+						i++;
+					}
+				}
+			}
+		}
+		return continuer;
+	}
+	
+	public void calculerStatus(Immeuble im){
+		assert status == '^' || status == 'v';
+		
+	if(!this.continuerEtages(im)){
+		System.out.println("tu rentre");
+			if(this.estVide()){
+				this.inverserStatus();
+			}else{
+				boolean continuer = false;
+				for(int i = 0; i < this.tableauPassager.length; i++){
+					if(this.tableauPassager[i] != null){
+						if(this.status == '^'){
+							if(this.tableauPassager[i].etageDestination().numero() > this.etage.numero()){
+								continuer = true;
+							}
+						}else{
+							
+							if(this.tableauPassager[i].etageDestination().numero() < this.etage.numero()){
+								continuer = true;
+							}
+						}
+					}
+				}
+				if(!continuer){
+					this.inverserStatus();
+				}
+			}
+		}
+	}
+	
+	public void inverserStatus(){
+		if(this.status == 'v'){
+			status = '^';
+		}else{
+			if(this.status == '^'){
+				status = 'v';
+			}
 		}
 	}
 }
