@@ -68,12 +68,22 @@ public class Cabine extends Constantes {
 	 * Fait sortir les personnes de la cabine
 	 * @return le nombre de personnes sorties
 	 */
-	public int faireSortir(){
+	public int faireSortir(Immeuble im, long date){
     	if(estVide()){
 			return 0;
 		} else {
-    		notYetImplemented();
-			return 0;
+    		int j = 0;
+    		for(int i = 0; i < this.tableauPassager.length; i++){
+    			if(this.tableauPassager[i] != null){
+    				if(this.tableauPassager[i].etageDestination().numero() == this.etage.numero()){
+    					j++;
+    					im.cumulDesTempsDeTransport += (date - this.tableauPassager[i].dateDepart());
+    					im.nombreTotalDesPassagersSortis+=1;
+    					this.tableauPassager[i] = null;
+    				}
+    			}
+    		}
+			return j;
 		}
 	}
 
@@ -101,7 +111,6 @@ public class Cabine extends Constantes {
 			if(i != im.etageLePlusBas().numero()){
 				i--;
 				while(i >= im.etageLePlusBas().numero() && !continuer){
-					System.out.println(i + " " + continuer);
 					if(!im.etage(i).estVide()){
 						continuer = true;
 						System.out.println(i + " " + continuer + " seks");
@@ -130,9 +139,8 @@ public class Cabine extends Constantes {
 		assert status == '^' || status == 'v';
 		
 	if(!this.continuerEtages(im)){
-		System.out.println("tu rentre");
 			if(this.estVide()){
-				this.inverserStatus();
+				
 			}else{
 				boolean continuer = false;
 				for(int i = 0; i < this.tableauPassager.length; i++){
@@ -164,5 +172,17 @@ public class Cabine extends Constantes {
 				status = 'v';
 			}
 		}
+	}
+	
+	public boolean veutSarreter(){
+		boolean res = false;
+		for(int i = 0; i < tableauPassager.length; i++){
+			if(this.tableauPassager[i] != null){
+				if(this.tableauPassager[i].etageDestination().numero() == this.etage.numero()){
+					res = true;
+				}
+			}	
+		}
+		return res;
 	}
 }

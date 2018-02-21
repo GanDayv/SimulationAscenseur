@@ -21,7 +21,7 @@ public class EvenementPassageCabinePalier extends Evenement {
         assert etage.numero() != cabine.etage.numero();
         cabine.etage = etage;
         //Ici
-        if(!cabine.etage.doitStopper()){
+        if(!cabine.etage.doitStopper() && !cabine.veutSarreter()){
         	
         	if(cabine.status() == 'v'){
         		

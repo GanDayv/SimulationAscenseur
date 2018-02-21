@@ -109,7 +109,5 @@ public class Immeuble extends Constantes {
     }
     */
     
-    public void calculerStatusCabine(){
-    	
-    }
+    
 }

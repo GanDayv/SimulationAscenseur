@@ -94,6 +94,7 @@ public class Etage extends Constantes {
     	boolean res = false;
     	if(!immeuble.cabine.estPlein()){
     		immeuble.cabine.ajouterPassager(p);
+    		immeuble.cabine.etage.passagers.remove(p);
     	}
     	return res;
     }
